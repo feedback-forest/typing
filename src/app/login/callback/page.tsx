@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { ClipLoader } from "react-spinners";
@@ -51,7 +51,11 @@ const LoginCallback = () => {
 };
 
 const LoginCallbackPage = () => {
-  return <LoginCallback />;
+  return (
+    <Suspense fallback={<></>}>
+      <LoginCallback />
+    </Suspense>
+  );
 };
 
 export default LoginCallbackPage;
