@@ -37,6 +37,5 @@ next-env.d.ts
 
 *storybook.log
 
-/src/shared/db
 /src/stories
 /public/mockServiceWorker.js
