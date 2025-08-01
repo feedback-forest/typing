@@ -1,0 +1,13 @@
+.next
+.cache
+package-lock.json
+public
+node_modules
+next-env.d.ts
+next.config.ts
+tailwind.config.ts
+yarn.lock
+next.config.mjs
+next-sitemap.config.js
+server.js
+postcss.config.mjs
