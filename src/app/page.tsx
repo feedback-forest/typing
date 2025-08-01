@@ -28,9 +28,13 @@ const TypingHome = () => {
   };
 
   useEffect(() => {
-    if (typingListData && phraseInfo && typingListData.length > 0) {
+    if (
+      typingListData &&
+      phraseInfo &&
+      typingListData.length > 0 &&
+      isSuccess
+    ) {
       setPhrase(typingListData);
-      setPhraseIndex(0);
       setIsReady(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
