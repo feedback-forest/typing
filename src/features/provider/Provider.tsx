@@ -5,6 +5,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { ReactNode, useState } from "react";
 
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -14,6 +15,7 @@ type Props = {
 };
 
 const Providers = ({ children }: Props) => {
+  const router = useRouter();
   const [client] = useState(
     new QueryClient({
       defaultOptions: {
@@ -27,8 +29,10 @@ const Providers = ({ children }: Props) => {
         onError: (error, query) => {
           if (query.meta && query.meta.errorMessage) {
             console.error(`${query.meta.errorMessage}`);
+            router.push("/not-found");
           } else {
             console.error(`Something went wrong: ${error.message}`);
+            router.push("/not-found");
           }
         },
       }),

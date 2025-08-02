@@ -111,7 +111,7 @@ const TypingHeader = () => {
         )}
         <div className="text-lg font-black cursor-pointer">{renderTitle()}</div>
         {isRenderLogin() && (
-          <div className="w-6">
+          <div className="w-6 cursor-pointer">
             <div onClick={() => router.push("/login")}>
               <TbLogin2 size={24} />
             </div>

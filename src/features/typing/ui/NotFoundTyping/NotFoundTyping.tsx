@@ -2,8 +2,12 @@
 
 import { Button } from "@/shared/ui";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const NotFoundTyping = () => {
+  const [isRouterBack, setIsRouterBack] = useState(false);
+  const router = useRouter();
   return (
     <div className="flex flex-col items-center justify-center text-center w-full min-h-[calc(100vh_-_68px)] gap-5">
       <div>
@@ -23,7 +27,13 @@ const NotFoundTyping = () => {
       <div>
         <Button
           className="bg-black rounded-[100px]"
-          onClick={() => window.location.reload()}
+          onClick={() => {
+            router.back();
+            setIsRouterBack(true);
+            if (isRouterBack) {
+              window.location.reload();
+            }
+          }}
         >
           다시 시도
         </Button>
