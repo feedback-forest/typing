@@ -14,11 +14,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/shared/ui/Accordion/Accordion";
+import { useRouter } from "next/navigation";
 const ResultPage = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   const { typing } = useTypingStore();
   const { typingResultInfo } = useTypingResultInfo();
+
+  const router = useRouter();
 
   const date = new Date();
   const YYYY = date.getFullYear();
@@ -113,12 +116,23 @@ const ResultPage = () => {
                       </div>
                     ) : (
                       <div className="gap-0">
-                        <ResultInfo
-                          title="Rank"
-                          content={`O위`}
-                          containerClassName="py-4"
-                          contentClassName="blur-sm"
-                        />
+                        <div className="flex flex-row items-center gap-2">
+                          <ResultInfo
+                            title="Rank"
+                            content={`O위`}
+                            containerClassName="py-4"
+                            contentClassName="blur-sm"
+                          />
+                          <div className="flex flex-row gap-0">
+                            <div
+                              className="text-custom-textTypingGreenColor cursor-pointer"
+                              onClick={() => router.push("/login")}
+                            >
+                              로그인
+                            </div>
+                            <div>을 하면 내 랭킹을 확인할 수 있어요!</div>
+                          </div>
+                        </div>
                         <Divider isDashed />
                       </div>
                     )}

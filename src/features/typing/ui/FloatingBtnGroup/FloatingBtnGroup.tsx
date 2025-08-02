@@ -118,7 +118,8 @@ const FloatingBtnGroup = ({
               buttonHeight={56}
               className={cn(
                 "border rounded-full min-w-[56px]",
-                isResultPage && "bg-black focus:bg-black",
+                isResultPage &&
+                  "bg-black hover:bg-custom-textTypingGreenColor focus:bg-black",
               )}
               handleClick={handleDownload}
             />

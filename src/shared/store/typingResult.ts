@@ -5,16 +5,18 @@ import { persist } from "zustand/middleware";
 export interface TypingResultState {
   typingResultInfo: SaveTypingInfo | null;
   setTypingResultInfo: (typingResult: SaveTypingInfo) => void;
+  resetTypingResultInfo: () => void;
 }
 
 const initialState: TypingResultState = {
   typingResultInfo: {
-    nickname: "",
+    nickname: "GUEST",
     role: "GUEST",
     rank: -1,
     luckyMessage: "",
   },
   setTypingResultInfo: () => {},
+  resetTypingResultInfo: () => {},
 };
 
 const useTypingResultInfo = create(
@@ -30,6 +32,8 @@ const useTypingResultInfo = create(
             luckyMessage: typingResult.luckyMessage,
           },
         }),
+      resetTypingResultInfo: () =>
+        set({ typingResultInfo: initialState.typingResultInfo }),
     }),
     {
       name: "typingResultInfo",

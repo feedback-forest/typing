@@ -12,14 +12,16 @@ import {
   DropdownMenuTrigger,
 } from "../../DropdownMenu/DropdownMenu";
 import { useToast } from "@/shared/hooks/useToast";
+import useTypingResultInfo from "@/shared/store/typingResult";
 
 const TypingHeader = () => {
   const pathname = usePathname();
   const router = useRouter();
   const url = pathname.split("/")[1];
 
-  const { typingLoginedUser } = useTypingLoginedUserStore();
-  const { setTypingLoginedUser } = useTypingLoginedUserStore();
+  const { typingLoginedUser, setTypingLoginedUser } =
+    useTypingLoginedUserStore();
+  const { resetTypingResultInfo } = useTypingResultInfo();
 
   const { toast } = useToast();
 
@@ -28,7 +30,7 @@ const TypingHeader = () => {
       accessToken: "",
       refreshToken: "",
     });
-
+    resetTypingResultInfo();
     toast({
       title: "로그아웃되었습니다.",
     });
@@ -87,7 +89,7 @@ const TypingHeader = () => {
         )}
       >
         {isRenderMobileArrow() ? (
-          <div className="desktop:hidden tablet:hidden mobile:flex justify-start items-center mobile:w-6 mobile:h-6">
+          <div className="desktop:hidden tablet:hidden mobile:flex justify-start items-center mobile:w-6 mobile:h-6 cursor-pointer">
             <div onClick={backToPreviousPage}>
               <Image
                 src="/icons/ic_back.svg"
@@ -99,12 +101,15 @@ const TypingHeader = () => {
           </div>
         ) : (
           <div>
-            <div onClick={() => router.push("/ranking")}>
+            <div
+              className="cursor-pointer"
+              onClick={() => router.push("/ranking")}
+            >
               <TbCrown size={24} />
             </div>
           </div>
         )}
-        <div className="text-lg font-black">{renderTitle()}</div>
+        <div className="text-lg font-black cursor-pointer">{renderTitle()}</div>
         {isRenderLogin() && (
           <div className="w-6">
             <div onClick={() => router.push("/login")}>
